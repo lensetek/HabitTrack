@@ -3,11 +3,13 @@
 ## Pemanfaatan Teknologi AI Berbasis Web untuk Monitoring 7 Kebiasaan Anak Indonesia Hebat di SMPN 1 Sampit
 
 ### Nama Peneliti:
-#### 1.Asadel Adi Liamsi
-#### 2. Khairil Azmi
+1. Khairil Azmi
+2. Asadel Adi Liamsi
 
 ## Akses
 #### https://7kebiasaan.vercel.app
+username: admin
+password: admin123
 
 ## Deskripsi
 
