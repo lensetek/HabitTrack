@@ -6,6 +6,8 @@
 #### 1.Asadel Adi Liamsi
 #### 2. Khairil Azmi
 
+## Akses
+#### https://7kebiasaan.vercel.app
 
 ## Deskripsi
 
