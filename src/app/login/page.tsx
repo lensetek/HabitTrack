@@ -38,7 +38,7 @@ export default function LoginPage() {
             <Logo className="h-8 w-8 text-primary" />
             <CardTitle className="text-3xl font-bold font-headline">HabitTrack</CardTitle>
           </div>
-          <CardDescription>Enter your email below to login to your account</CardDescription>
+          <CardDescription>Masukkan email Anda di bawah untuk masuk ke akun Anda</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
