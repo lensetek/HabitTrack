@@ -9,26 +9,45 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Logo } from "@/components/icons"
 import { useToast } from "@/hooks/use-toast"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; // Import Firebase Auth functions
+import { app } from "@/lib/firebase"; // Assuming you have a firebase initialization file here
 
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("teacher");
+  const [role, setRole] = useState("teacher"); // You might handle roles within Firebase or your database
 
-  const handleLogin = () => {
-    if (email === "admin" && password === "admin123" && role === "admin") {
+  const handleLogin = async () => { // Make the function async
+    const auth = getAuth(app); // Get Firebase Auth instance
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // If login is successful, redirect to the dashboard or desired page
       router.push("/dashboard");
-    } else {
+    } catch (error: any) { // Catch any errors
+      let errorMessage = "Terjadi kesalahan saat mencoba masuk. Silakan coba lagi.";
+      // Handle specific Firebase Auth errors
+      switch (error.code) {
+        case 'auth/user-not-found':
+        case 'auth/wrong-password':
+          errorMessage = "Email atau kata sandi salah. Silakan coba lagi.";
+          break;
+        case 'auth/invalid-email':
+          errorMessage = "Format email tidak valid. Silakan coba lagi.";
+          break;
+        default:
+          errorMessage = `Error: ${error.message}`; // Display a more general error for others
+      }
+
       toast({
         variant: "destructive",
         title: "Login Gagal",
-        description: "Email, password, atau peran salah. Silakan coba lagi.",
-      })
+        description: errorMessage,
+      });
     }
   };
-
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background">
